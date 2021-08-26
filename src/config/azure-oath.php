@@ -17,14 +17,14 @@ return [
     'credentials' => [
         'client_id' => env('AZURE_AD_CLIENT_ID', ''),
         'client_secret' => env('AZURE_AD_CLIENT_SECRET', ''),
-        'redirect' => Request::root().'/login/microsoft/callback'
+        'redirect' => '/login/microsoft/callback'
     ],
 
     // The route to redirect the user to upon login.
     'redirect_on_login' => '/home',
 
     // The User Eloquent class.
-    'user_class' => '\\App\\User',
+    'user_class' => '\\App\\Models\\User',
 
     // How much time should be left before the access
     // token expires to attempt a refresh.
@@ -39,7 +39,8 @@ return [
     'user_map' => [
         'name' => 'name',
         'email' => 'email',
-        'name' => 'name',
-        'name' => 'name',
+        'jobTitle' => 'job_title',
+        'mobilePhone' => 'mobile_phone',
+        'officeLocation' => 'office_location',
     ]
 ];
