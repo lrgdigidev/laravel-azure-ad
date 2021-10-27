@@ -33,12 +33,21 @@ class ServiceProvider extends BaseServiceProvider
             __DIR__.'/config/azure-oath.php', 'azure-oath'
         );
 
-        $this->app['Laravel\Socialite\Contracts\Factory']->extend('azure-oauth', function($app){
-            return $app['Laravel\Socialite\Contracts\Factory']->buildProvider(
-                'Metrogistics\AzureSocialite\AzureOauthProvider',
-                config('azure-oath.credentials')
-            );
-        });
+        if (request()->getHttpHost() === config('azure-oath.alt-domain')) {
+            $this->app['Laravel\Socialite\Contracts\Factory']->extend('azure-oauth', function ($app) {
+                return $app['Laravel\Socialite\Contracts\Factory']->buildProvider(
+                    'Metrogistics\AzureSocialite\AzureOauthProvider',
+                    config('azure-oath.alt-credentials')
+                );
+            });
+        } else {
+            $this->app['Laravel\Socialite\Contracts\Factory']->extend('azure-oauth', function ($app) {
+                return $app['Laravel\Socialite\Contracts\Factory']->buildProvider(
+                    'Metrogistics\AzureSocialite\AzureOauthProvider',
+                    config('azure-oath.credentials')
+                );
+            });
+        }
 
         $this->app['router']->group(['middleware' => config('azure-oath.routes.middleware')], function($router){
             $router->get(config('azure-oath.routes.login'), 'Metrogistics\AzureSocialite\AuthController@redirectToOauthProvider');
