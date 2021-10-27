@@ -19,7 +19,15 @@ return [
         'client_secret' => env('AZURE_AD_CLIENT_SECRET', ''),
         'redirect' => '/login/microsoft/callback'
     ],
+    
+    'alt-domain' => env('AZURE_AD_ALT_DOMAIN', ''),
 
+    'alt-credentials' => [
+        'client_id' => env('AZURE_AD_ALT_CLIENT_ID', ''),
+        'client_secret' => env('AZURE_AD_ALT_CLIENT_SECRET', ''),
+        'redirect' => '/login/microsoft/callback'
+    ],
+    
     // The route to redirect the user to upon login.
     'redirect_on_login' => '/home',
 
