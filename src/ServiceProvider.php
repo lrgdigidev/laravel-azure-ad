@@ -40,6 +40,20 @@ class ServiceProvider extends BaseServiceProvider
                     config('azure-oath.alt-credentials')
                 );
             });
+        } elseif (request()->getHttpHost() === config('azure-oath.alt2-domain')) {
+            $this->app['Laravel\Socialite\Contracts\Factory']->extend('azure-oauth', function ($app) {
+                return $app['Laravel\Socialite\Contracts\Factory']->buildProvider(
+                    'Metrogistics\AzureSocialite\AzureOauthProvider',
+                    config('azure-oath.alt2-credentials')
+                );
+            });
+        } elseif (request()->getHttpHost() === config('azure-oath.alt3-domain')) {
+            $this->app['Laravel\Socialite\Contracts\Factory']->extend('azure-oauth', function ($app) {
+                return $app['Laravel\Socialite\Contracts\Factory']->buildProvider(
+                    'Metrogistics\AzureSocialite\AzureOauthProvider',
+                    config('azure-oath.alt3-credentials')
+                );
+            });
         } else {
             $this->app['Laravel\Socialite\Contracts\Factory']->extend('azure-oauth', function ($app) {
                 return $app['Laravel\Socialite\Contracts\Factory']->buildProvider(
