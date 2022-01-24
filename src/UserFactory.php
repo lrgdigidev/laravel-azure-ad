@@ -2,6 +2,8 @@
 
 namespace Metrogistics\AzureSocialite;
 
+use Carbon\Carbon;
+
 class UserFactory
 {
     protected $config;
