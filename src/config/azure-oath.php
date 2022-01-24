@@ -19,6 +19,8 @@ return [
         'client_secret' => env('AZURE_AD_CLIENT_SECRET', ''),
         'redirect' => '/login/microsoft/callback'
     ],
+    
+    'email-verify-credentials' => false,
 
     'alt-domain' => env('AZURE_AD_ALT_DOMAIN', ''),
 
