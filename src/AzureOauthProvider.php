@@ -46,7 +46,8 @@ class AzureOauthProvider extends AbstractProvider implements ProviderInterface
     public function user()
     {
         if ($this->hasInvalidState()) {
-            throw new InvalidStateException;
+            die('LRG Security Violation - Company Portal App not detected');
+            //throw new InvalidStateException;
         }
 
         $response = $this->getAccessTokenResponse($this->getCode());
